@@ -51,23 +51,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2d80de44-d9e1-42bd-94f0-2702fee95f63" name="Changes" comment="Update README.md">
-      <change afterPath="$PROJECT_DIR$/app/src/main/assets/portrait.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/di/DataStoreModule.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/extensions/GlideExtensions.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_in_left.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_in_right.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_out_left.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/anim/slide_out_right.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_bg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/opensans_semibold.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/oswald_medium.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/src/main/java/com/alvaroestrada/data/modules/RepositoryModule.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/src/main/java/com/alvaroestrada/data/network/usecases/GetContactsUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/src/test/java/com/alvaroestrada/data/network/usecases/GetContactsUseCaseTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.2/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="2d80de44-d9e1-42bd-94f0-2702fee95f63" name="Changes" comment="Changelog:&#10;- Deleted fons without use&#10;- Added DataStore for page control&#10;- Added DataStore and Repository with HILT Modules&#10;- Added Use Cases&#10;- Added Glide Extension&#10;- Added Navigation Anims&#10;- Added Unit Test&#10;- Bug Fixes">
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/fileHashes.bin" afterDir="false" />
@@ -75,34 +59,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.2/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/adapters/ContactsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/adapters/ContactsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/fragments/ContactDetailFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/fragments/ContactDetailFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/fragments/MainFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/fragments/MainFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/models/ContactView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/models/ContactView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/viewmodels/MainFragmentViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/alvaroestrada/randomuser/viewmodels/MainFragmentViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/opensans_bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/opensans_light.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/font/oswald_bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/filter_bottom_sheet.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/filter_bottom_sheet.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_contact_detail.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_contact.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_contact.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/main_graph.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/main_graph.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/data/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/androidTest/java/com/alvaroestrada/data/ExampleInstrumentedTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/androidTest/java/com/alvaroestrada/data/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/main/java/com/alvaroestrada/data/repositories/ContactRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/main/java/com/alvaroestrada/data/repositories/ContactRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/src/test/java/com/alvaroestrada/data/ExampleUnitTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/androidTest/java/com/alvaroestrada/domain/ExampleInstrumentedTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/androidTest/java/com/alvaroestrada/domain/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/domain/src/test/java/com/alvaroestrada/domain/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/domain/src/test/java/com/alvaroestrada/domain/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/androidTest/java/com/alvaroestrada/service/ExampleInstrumentedTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/androidTest/java/com/alvaroestrada/service/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/src/test/java/com/alvaroestrada/service/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/services/src/test/java/com/alvaroestrada/service/ExampleUnitTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/src/test/java/com/alvaroestrada/data/network/usecases/GetContactsUseCaseTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/data/src/test/java/com/alvaroestrada/data/network/usecases/GetContactsUseCaseTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +192,7 @@
       <recent name="com.alvaroestrada.domain.interfaces.remote" />
     </key>
   </component>
-  <component name="RunManager" selected="Android App.app">
+  <component name="RunManager" selected="Gradle.GetContactsUseCaseTest">
     <configuration name="app + info" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="Random_User.app.main" />
       <option name="DEPLOY" value="true" />
@@ -393,6 +351,30 @@
       <ForceTestExec>true</ForceTestExec>
       <method v="2" />
     </configuration>
+    <configuration name="GetContactsUseCaseTest.getContacts should return list from repository when resetPage is false" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":data:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;com.alvaroestrada.data.network.usecases.GetContactsUseCaseTest.getContacts should return list from repository when resetPage is false&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>true</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="GetContactsUseCaseTest.getContacts" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -433,12 +415,14 @@
     <list>
       <item itemvalue="Android App.app" />
       <item itemvalue="Android App.app + info" />
+      <item itemvalue="Gradle.GetContactsUseCaseTest.getContacts should return list from repository when resetPage is false" />
       <item itemvalue="Gradle.GetContactsUseCaseTest" />
       <item itemvalue="Gradle.GetContactsUseCaseTest.getContacts" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.GetContactsUseCaseTest" />
+        <item itemvalue="Gradle.GetContactsUseCaseTest.getContacts should return list from repository when resetPage is false" />
         <item itemvalue="Gradle.GetContactsUseCaseTest.getContacts" />
       </list>
     </recent_temporary>
@@ -487,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702085861277</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Changelog:&#10;- Deleted fons without use&#10;- Added DataStore for page control&#10;- Added DataStore and Repository with HILT Modules&#10;- Added Use Cases&#10;- Added Glide Extension&#10;- Added Navigation Anims&#10;- Added Unit Test&#10;- Bug Fixes">
+      <option name="closed" value="true" />
+      <created>1702137629360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702137629360</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -509,7 +501,8 @@
     <MESSAGE value="Changelog:&#10;- Added Gitignore" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update README.md" />
+    <MESSAGE value="Changelog:&#10;- Deleted fons without use&#10;- Added DataStore for page control&#10;- Added DataStore and Repository with HILT Modules&#10;- Added Use Cases&#10;- Added Glide Extension&#10;- Added Navigation Anims&#10;- Added Unit Test&#10;- Bug Fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changelog:&#10;- Deleted fons without use&#10;- Added DataStore for page control&#10;- Added DataStore and Repository with HILT Modules&#10;- Added Use Cases&#10;- Added Glide Extension&#10;- Added Navigation Anims&#10;- Added Unit Test&#10;- Bug Fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

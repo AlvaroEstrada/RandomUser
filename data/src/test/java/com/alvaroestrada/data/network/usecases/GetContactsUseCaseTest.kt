@@ -8,6 +8,7 @@ import io.mockk.coVerify
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -26,29 +27,59 @@ class GetContactsUseCaseTest {
     }
 
     @Test
-    fun `get contacts returns list of contacts when successful`() = runBlocking {
+    fun `getContacts should return list from repository when resetPage is false`() = runBlocking {
         // Given
-        val expectedContacts = listOf(mockk<IContactView>())
-        coEvery { repository.getNextPageOfUsers() } returns expectedContacts
+        val mockContactsList = listOf<IContactView>()
+        coEvery { repository.getNextPageOfUsers(false) } returns mockContactsList
 
         // When
-        val result = getContactsUseCase.getContacts()
+        val result = getContactsUseCase.getContacts(false)
 
         // Then
-        coVerify(exactly = 1) { repository.getNextPageOfUsers() }
-        assertEquals(expectedContacts, result)
+        assertEquals(mockContactsList, result)
+        coVerify { runBlocking { repository.getNextPageOfUsers(false) } }
     }
 
     @Test
-    fun `get contacts returns empty list when repository returns null`() = runBlocking {
+    fun `getContacts should return a list of 20 contacts when resetPage is true`() = runBlocking {
         // Given
-        coEvery { repository.getNextPageOfUsers() } returns null
+        val dummyContactsList = generateDummyContactsList(20)
+        coEvery { repository.getNextPageOfUsers(true) } returns dummyContactsList
 
         // When
-        val result = getContactsUseCase.getContacts()
+        val result = getContactsUseCase.getContacts(true)
 
         // Then
-        coVerify(exactly = 1) { repository.getNextPageOfUsers() }
-        assertEquals(emptyList<IContactView>(), result)
+        assertEquals(20, result.size)
+    }
+
+    private fun generateDummyContactsList(size: Int): List<IContactView> {
+        return List(size) { mockk<IContactView>(relaxed = true) }
+    }
+
+
+    @Test(expected = Exception::class)
+    fun `getContacts should throw an exception when repository throws an exception`() = runBlocking {
+        // Given
+        coEvery { repository.getNextPageOfUsers(any()) } throws Exception("Test exception")
+
+        // When
+        getContactsUseCase.getContacts(true)
+
+        // Then
+        coVerify { runBlocking { repository.getNextPageOfUsers(true) } }
+    }
+
+    @Test
+    fun `getContacts should return an empty list when repository returns an empty list`() = runBlocking {
+        // Given
+        coEvery { repository.getNextPageOfUsers(any()) } returns emptyList()
+
+        // When
+        val result = getContactsUseCase.getContacts(true)
+
+        // Then
+        assertTrue(result.isEmpty())
+        coVerify { runBlocking { repository.getNextPageOfUsers(true) } }
     }
 }
