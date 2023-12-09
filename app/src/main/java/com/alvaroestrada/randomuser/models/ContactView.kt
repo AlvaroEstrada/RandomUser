@@ -1,7 +1,10 @@
 package com.alvaroestrada.randomuser.models
 
+import android.os.Parcelable
 import com.alvaroestrada.domain.interfaces.view.IContactView
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ContactView(
     override val uuid: String,
     override val username: String,
@@ -17,7 +20,7 @@ data class ContactView(
     override val thumbPicUrl: String,
     override val latitude: String,
     override val longitude: String
-): IContactView {
+) : IContactView, Parcelable {
     val fullName: String
         get() = "$firstName $lastName"
 }
