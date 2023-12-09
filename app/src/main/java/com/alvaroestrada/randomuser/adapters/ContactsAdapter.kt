@@ -24,5 +24,10 @@ class ContactsAdapter(private val onClick:(ContactView) -> Unit) : ListAdapter<C
         holder.itemView.setOnClickListener { onClick(contact) }
     }
 
+    fun getPositionOfContact(contact: ContactView): Int {
+        return currentList.indexOf(contact)
+    }
+
     class ContactViewHolder(val binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root)
+
 }

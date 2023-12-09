@@ -27,7 +27,6 @@ import com.alvaroestrada.randomuser.viewmodels.UiState
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -174,7 +173,7 @@ class MainFragment : Fragment() {
 
     private fun showData(contacts: List<ContactView>?) {
         contactsAdapter.submitList(contacts) {
-            if (lastVisibleItemPosition != RecyclerView.NO_POSITION && lastVisibleItemPosition != 0) {
+            if (lastVisibleItemPosition != RecyclerView.NO_POSITION && lastVisibleItemPosition != 0 && isSearching.not()) {
                 binding.contactRv.layoutManager?.scrollToPosition(lastVisibleItemPosition)
             }
         }

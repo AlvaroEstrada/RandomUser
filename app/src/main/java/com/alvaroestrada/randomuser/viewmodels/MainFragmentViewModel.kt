@@ -31,8 +31,9 @@ class MainFragmentViewModel @Inject  constructor(
         if (contacts.isEmpty()){
             viewModelScope.launch {
                 try {
-                    val newUsers = getContactsUseCase.getContacts(true)?.map { it.toContactView() }
-                    _uiState.value = UiState.Success(newUsers)
+                    val newUsers = getContactsUseCase.getContacts(true).map { it.toContactView() }
+                    contacts = newUsers
+                    _uiState.value = UiState.Success(contacts)
                 } catch (e: Exception) {
                     _uiState.value = UiState.Error(e.message)
                 }
@@ -46,7 +47,8 @@ class MainFragmentViewModel @Inject  constructor(
                 isLoading = true
                 try {
                     val newUsers = getContactsUseCase.getContacts(false).map { it.toContactView() }
-                    _uiState.value = UiState.Success(newUsers)
+                    contacts = newUsers
+                    _uiState.value = UiState.Success(contacts)
                 } catch (e: Exception) {
                     _uiState.value = UiState.Error(e.message)
                 } finally {
@@ -68,7 +70,10 @@ class MainFragmentViewModel @Inject  constructor(
     }
 
     fun refreshContacts(){
-        viewModelScope.launch { getContactsUseCase.getContacts(true) }
+        viewModelScope.launch {
+            val newUsers = getContactsUseCase.getContacts(true).map { it.toContactView() }
+            _uiState.value = UiState.Success(newUsers)
+        }
     }
 }
 

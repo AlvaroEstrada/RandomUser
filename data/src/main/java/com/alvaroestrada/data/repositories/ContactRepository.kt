@@ -4,7 +4,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.preferencesOf
 import com.alvaroestrada.data.network.api.ContactApiService
 import com.alvaroestrada.domain.interfaces.view.IContactView
 import com.alvaroestrada.domain.mappers.ContactMapper

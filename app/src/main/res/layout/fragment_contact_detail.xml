@@ -27,6 +27,24 @@
         app:navigationIcon="@drawable/ic_back"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
+    <ImageButton
+        android:id="@+id/editDetailButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_edit_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/portraitImage" />
+
+    <ImageButton
+        android:id="@+id/cameraDetailButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:src="@drawable/ic_camera_detail"
+        app:layout_constraintEnd_toStartOf="@+id/editDetailButton"
+        app:layout_constraintTop_toBottomOf="@+id/portraitImage" />
+
     <ImageView
         android:id="@+id/contactImage"
         android:layout_width="90dp"
@@ -35,17 +53,217 @@
         app:layout_constraintStart_toStartOf="@+id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/portraitImage" />
 
-    <TextView
-        android:id="@+id/textView"
+    <!-- Name -->
+
+    <ImageView
+        android:id="@+id/nameIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contactImage"
-        tools:text="Prueba de texto" />
+        android:src="@drawable/ic_date_detail"
+        app:layout_constraintEnd_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/nameLayout"
+        app:layout_constraintTop_toTopOf="@+id/nameLayout"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameLayout"
+        style="@style/TextInputLayoutOpenSans"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="@string/detail_name_hint"
+        app:layout_constraintEnd_toStartOf="@+id/endFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/cameraDetailButton">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameEdt"
+            style="@style/EditTextOpenSans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Laura Navarro Martínez"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:cursorVisible="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Email -->
+
+    <ImageView
+        android:id="@+id/emailIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_email_detail"
+        app:layout_constraintEnd_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/emailLayout"
+        app:layout_constraintTop_toTopOf="@+id/emailLayout"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        style="@style/TextInputLayoutOpenSans"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/detail_email_hint"
+        app:layout_constraintEnd_toStartOf="@+id/endFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailEdt"
+            style="@style/EditTextOpenSans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="lauranavarro@gmail.com"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:cursorVisible="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Gender -->
+
+    <ImageView
+        android:id="@+id/genderIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_female_detail"
+        app:layout_constraintEnd_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/genderLayout"
+        app:layout_constraintTop_toTopOf="@+id/genderLayout"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/genderLayout"
+        style="@style/TextInputLayoutOpenSans"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/detail_gender_hint"
+        app:layout_constraintEnd_toStartOf="@+id/endFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/emailLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/genderEdt"
+            style="@style/EditTextOpenSans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mujer"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:cursorVisible="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Date -->
+
+    <ImageView
+        android:id="@+id/detailDateIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_date_detail"
+        app:layout_constraintBottom_toBottomOf="@+id/dateLayout"
+        app:layout_constraintEnd_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintTop_toTopOf="@+id/dateLayout"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateLayout"
+        style="@style/TextInputLayoutOpenSans"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/detail_date_hint"
+        app:layout_constraintEnd_toStartOf="@+id/endFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/genderLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateEdt"
+            style="@style/EditTextOpenSans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12/11/2023"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:cursorVisible="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Phone -->
+
+    <ImageView
+        android:id="@+id/phoneIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_phone_detail"
+        app:layout_constraintEnd_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="@+id/startGuideline"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneLayout"
+        app:layout_constraintTop_toTopOf="@+id/phoneLayout"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneLayout"
+        style="@style/TextInputLayoutOpenSans"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/detail_phone_hint"
+        app:layout_constraintEnd_toStartOf="@+id/endFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/dateLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phoneEdt"
+            style="@style/EditTextOpenSans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="+34 665587115"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:inputType="none"
+            android:cursorVisible="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Location -->
+
+    <TextView
+        android:id="@+id/detailNameHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail_location_hint"
+        android:theme="@style/DetailHintText"
+        android:layout_marginTop="14dp"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/phoneLayout" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/endFieldsGuideline"
+        app:layout_constraintStart_toStartOf="@+id/startFieldsGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/detailNameHint"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/startGuideline"
@@ -53,5 +271,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startFieldsGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endFieldsGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
