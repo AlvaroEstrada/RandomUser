@@ -1,0 +1,41 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.RandomUser" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorSecondary">@color/white</item>
+    </style>
+
+    <style name="Theme.RandomUser" parent="Base.Theme.RandomUser" />
+
+    <style name="AppBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:fontFamily">@font/oswald_bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ItemContactName">
+        <item name="android:fontFamily">@font/opensans_bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="ItemContactEmail">
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginStart">16dp</item>
+    </style>
+
+    <style name="SearchField">
+        <item name="android:colorPrimary">@color/black</item>
+        <item name="android:colorAccent">@color/black</item>
+        <item name="android:fontFamily">@font/opensans_regular</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:cursorVisible">true</item>
+        <item name="cursorColor">@color/black</item>
+        <item name="colorControlActivated">@color/black</item>
+    </style>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_options"
+        android:icon="@drawable/ic_options"
+        app:showAsAction="always"
+        android:title="@string/contacts_toolbar_menu_options">
+        <menu>
+            <item
+                android:id="@+id/filter_option"
+                android:title="@string/contacts_toolbar_menu_filter"
+                android:icon="@drawable/ic_filter"/>
+            <item
+                android:id="@+id/refresh_option"
+                android:title="@string/contacts_toolbar_menu_refresh"
+                android:icon="@drawable/ic_refresh"/>
+            <!-- Agrega más opciones de filtro si es necesario -->
+        </menu>
+    </item>
+</menu>

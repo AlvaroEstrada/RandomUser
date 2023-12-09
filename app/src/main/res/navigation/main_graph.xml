@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/main_destination">
+
+    <fragment
+        android:id="@+id/main_destination"
+        android:name="com.alvaroestrada.randomuser.fragments.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_main_destination_to_detail_destination"
+            app:destination="@id/detail_destination" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detail_destination"
+        android:name="com.alvaroestrada.randomuser.fragments.ContactDetailFragment"
+        android:label="UserDetailFragment"
+        tools:layout="@layout/fragment_contact_detail">
+
+        <argument
+            android:name="user"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
+</navigation>
