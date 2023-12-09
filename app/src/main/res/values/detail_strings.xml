@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="detail_name_hint">Nombre y apellidos</string>
+    <string name="detail_email_hint">Email</string>
+    <string name="detail_gender_hint">Género</string>
+    <string name="detail_date_hint">Fecha de registro</string>
+    <string name="detail_phone_hint">Teléfono</string>
+    <string name="detail_location_hint">Dirección</string>
+    <string name="detail_edit_warning">No es posible editar el contacto</string>
+    <string name="detail_camera_warning">No es posible cambiar la foto</string>
+</resources>

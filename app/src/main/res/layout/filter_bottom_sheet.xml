@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="5dp"
-    android:background="@color/white"
+    android:background="@drawable/bottom_sheet_bg"
     android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="0dp"
@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/contacts_bottom_sheet_filter_hint"
+            android:fontFamily="@font/opensans_regular"
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,6 +52,7 @@
         android:paddingEnd="32dp"
         android:paddingBottom="8dp"
         android:text="@string/contacts_bottom_sheet_filter_close"
+        android:fontFamily="@font/opensans_semibold"
         android:textAllCaps="true"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/filterLayout"

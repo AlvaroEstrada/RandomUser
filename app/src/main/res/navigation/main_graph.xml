@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_main_destination_to_detail_destination"
-            app:destination="@id/detail_destination" />
+            app:destination="@id/detail_destination"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
@@ -22,9 +26,8 @@
         tools:layout="@layout/fragment_contact_detail">
 
         <argument
-            android:name="user"
-            app:argType="string"
-            android:defaultValue=""/>
+            android:name="contact"
+            app:argType="com.alvaroestrada.randomuser.models.ContactView"/>
     </fragment>
 
 </navigation>

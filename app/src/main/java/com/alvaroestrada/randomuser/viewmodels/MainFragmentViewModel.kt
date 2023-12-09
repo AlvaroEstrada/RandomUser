@@ -2,7 +2,7 @@ package com.alvaroestrada.randomuser.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alvaroestrada.data.repositories.ContactRepository
+import com.alvaroestrada.data.network.usecases.GetContactsUseCase
 import com.alvaroestrada.randomuser.mappers.toContactView
 import com.alvaroestrada.randomuser.models.ContactView
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainFragmentViewModel @Inject  constructor(
-    private val repository: ContactRepository
+    private val getContactsUseCase: GetContactsUseCase
 ): ViewModel() {
     private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
     val uiState: StateFlow<UiState> = _uiState.asStateFlow()
@@ -27,13 +27,16 @@ class MainFragmentViewModel @Inject  constructor(
         loadContacts()
     }
 
-    private fun loadContacts(){
-        viewModelScope.launch {
-            try {
-                val newUsers = repository.getNextPageOfUsers()?.map { it.toContactView()}
-                _uiState.value = UiState.Success(newUsers)
-            } catch (e: Exception) {
-                _uiState.value = UiState.Error(e.message)
+    fun loadContacts(){
+        if (contacts.isEmpty()){
+            viewModelScope.launch {
+                try {
+                    val newUsers = getContactsUseCase.getContacts(true).map { it.toContactView() }
+                    contacts = newUsers
+                    _uiState.value = UiState.Success(contacts)
+                } catch (e: Exception) {
+                    _uiState.value = UiState.Error(e.message)
+                }
             }
         }
     }
@@ -43,9 +46,8 @@ class MainFragmentViewModel @Inject  constructor(
             viewModelScope.launch {
                 isLoading = true
                 try {
-                    val currentUsers = (_uiState.value as? UiState.Success)?.contacts.orEmpty()
-                    val newUsers = repository.getNextPageOfUsers()?.map { it.toContactView() }
-                    contacts = currentUsers + newUsers.orEmpty()
+                    val newUsers = getContactsUseCase.getContacts(false).map { it.toContactView() }
+                    contacts = newUsers
                     _uiState.value = UiState.Success(contacts)
                 } catch (e: Exception) {
                     _uiState.value = UiState.Error(e.message)
@@ -68,7 +70,10 @@ class MainFragmentViewModel @Inject  constructor(
     }
 
     fun refreshContacts(){
-        loadContacts()
+        viewModelScope.launch {
+            val newUsers = getContactsUseCase.getContacts(true).map { it.toContactView() }
+            _uiState.value = UiState.Success(newUsers)
+        }
     }
 }
 

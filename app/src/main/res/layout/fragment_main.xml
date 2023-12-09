@@ -11,9 +11,9 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/transparent"
         android:elevation="4dp"
-        android:theme="@style/AppBarTheme"
+        app:titleTextAppearance="@style/AppBarTheme"
         app:navigationIcon="@drawable/ic_user"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:popupTheme="@style/ToolbarMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
