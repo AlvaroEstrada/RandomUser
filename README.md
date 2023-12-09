@@ -1,19 +1,28 @@
-# README for RandomUser Project
+# RandomUser
 
-## Overview
-RandomUser es una aplicación Android desarrollada en Kotlin, diseñada para mostrar usuarios aleatorios.
+## Descripción General
+RandomUser es una aplicación Android desarrollada en Kotlin, diseñada para mostrar perfiles de usuarios aleatorios. Utiliza una arquitectura modular para una mejor escalabilidad y mantenimiento.
 
-## Estructura del Proyecto
-- **app:** Código principal de la aplicación.
-- **data:** Capa de datos, maneja la lógica de datos.
-- **domain:** Contiene la lógica de negocio.
-- **services:** Servicios externos y APIs.
+## Módulos
+- **App:** Código principal de la aplicación.
+- **Data:** Manejo y almacenamiento de datos.
+- **Domain:** Lógica de negocio.
+- **Services:** Gestión de servicios externos y APIs.
 
 ## Arquitectura
-El proyecto utiliza una arquitectura modular, facilitando la escalabilidad y mantenimiento.
+Este proyecto emplea un enfoque de arquitectura limpia, separando preocupaciones para una mejor capacidad de prueba y fácil comprensión. Implementa patrones de diseño como MVVM y MVI. Se comunica entre capas por medio de Interfaces.
 
-## Notas Adicionales
+## Comenzando
+Descargue el proyecto, ábralo con Android Studio y ejecute la aplicación en un emulador o dispositivo físico.
 
----
+## Licencia
+Este proyecto tiene licencia Apache 2.0.
 
-Para más información, visita [GitHub - AlvaroEstrada/RandomUser](https://github.com/AlvaroEstrada/RandomUser).
+## Contacto
+Este proyecto ha sido desarrollado por [Álvaro Estrada](https://www.linkedin.com/in/aest85/).
+
+## Agradecimientos
+Los datos han sido extraidos de la API [Random User API](https://randomuser.me/)
+
+
+Para más detalles, visita el [repositorio de GitHub](https://github.com/AlvaroEstrada/RandomUser/tree/master).
