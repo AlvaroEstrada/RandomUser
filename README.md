@@ -12,11 +12,23 @@ RandomUser es una aplicación Android desarrollada en Kotlin, diseñada para mos
 ## Arquitectura
 Este proyecto emplea un enfoque de arquitectura limpia, separando preocupaciones para una mejor capacidad de prueba y fácil comprensión. Implementa patrones de diseño como MVVM y MVI. Se comunica entre capas por medio de Interfaces.
 
+## Composición
+- **Arquitectura:** Arquitectura limpia modular.
+- **Patrones:** MVVM y MVI.
+- **Componentes:**
+  - Inyección de dependencias con HILT
+  - Control de paginación con DataStore
+  - Control de vistas con Navigation
+  - Llamadas REST con Retrofit, OkHttp, y Moshi
+  - Diseño con Material
+  - Carga de imágenes con Glide
+  - Test Unitarios con JUnit4 y MockK
+
 ## Comenzando
 1. Descargue el proyecto
 2. Ábralo con Android Studio
-3. Acceda a su fichero "local.properties" y agrege su API KEY de Google Maps con este formato: 
-GOOGLE_MAPS_API_KEY=XXXXXXXXXXXXXXXXXXX
+3. Acceda a su fichero "local.properties" (si no le aparece, créelo en la ruta principal del proyecto) y agrege su API KEY de Google Maps con este formato:
+   **GOOGLE_MAPS_API_KEY=XXXXXXXXXXXXXXXXXXX**
 4.  Ejecute la aplicación en un emulador o dispositivo físico.
 
 ## Licencia
