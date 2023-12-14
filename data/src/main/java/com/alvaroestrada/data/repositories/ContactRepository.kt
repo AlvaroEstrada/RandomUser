@@ -4,6 +4,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import com.alvaroestrada.data.errors.CustomError
+import com.alvaroestrada.data.errors.Either
 import com.alvaroestrada.data.network.api.ContactApiService
 import com.alvaroestrada.domain.interfaces.view.IContactView
 import com.alvaroestrada.domain.mappers.ContactMapper
@@ -21,20 +23,24 @@ class ContactRepository @Inject constructor(
 
     private val allContacts = mutableListOf<IContactView>()
 
-    suspend fun getNextPageOfUsers(resetPage: Boolean): List<IContactView> {
-        if (resetPage) {
-            resetPages()
-            allContacts.clear()
-        }
-        val currentPage = getCurrentPage()
-        val response = apiService.getContacts(currentPage, pageSize)
-        if (response.isSuccessful) {
-            val newContacts = response.body()?.contacts?.map { mapper.fromRemoteToView(it) }.orEmpty()
-            allContacts.addAll(newContacts)
-            setCurrentPage(currentPage + 1)
-            return allContacts.toList()
-        } else {
-            throw Exception("Error al obtener usuarios")
+    suspend fun getNextPageOfUsers(resetPage: Boolean): Either<CustomError, List<IContactView>> {
+        return try {
+            if (resetPage) {
+                resetPages()
+                allContacts.clear()
+            }
+            val currentPage = getCurrentPage()
+            val response = apiService.getContacts(currentPage, pageSize)
+            if (response.isSuccessful) {
+                val newContacts = response.body()?.contacts?.map { mapper.fromRemoteToView(it) }.orEmpty()
+                allContacts.addAll(newContacts)
+                setCurrentPage(currentPage + 1)
+                Either.Right(allContacts.toList())
+            } else {
+                Either.Left(CustomError.NetworkError)
+            }
+        } catch (e: Exception) {
+            Either.Left(CustomError.NetworkError)
         }
     }
 
