@@ -2,7 +2,11 @@ package com.alvaroestrada.randomuser.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.alvaroestrada.data.errors.CustomError
+import com.alvaroestrada.data.extensions.ifLeft
+import com.alvaroestrada.data.extensions.ifRight
 import com.alvaroestrada.data.network.usecases.GetContactsUseCase
+import com.alvaroestrada.randomuser.R
 import com.alvaroestrada.randomuser.mappers.toContactView
 import com.alvaroestrada.randomuser.models.ContactView
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,15 +31,22 @@ class MainFragmentViewModel @Inject  constructor(
         loadContacts()
     }
 
-    fun loadContacts(){
+    private fun loadContacts(){
         if (contacts.isEmpty()){
             viewModelScope.launch {
                 try {
-                    val newUsers = getContactsUseCase.getContacts(true).map { it.toContactView() }
-                    contacts = newUsers
-                    _uiState.value = UiState.Success(contacts)
+                    getContactsUseCase.getContacts(true)
+                        .ifLeft { error ->
+                            when (error){
+                                is CustomError.NetworkError -> { _uiState.value = UiState.Error(R.string.network_error) }
+                                else -> {}
+                            }
+                        }.ifRight { contactList ->
+                            contacts = contactList.map { it.toContactView() }
+                            _uiState.value = UiState.Success(contacts)
+                        }
                 } catch (e: Exception) {
-                    _uiState.value = UiState.Error(e.message)
+                    _uiState.value = UiState.Error(R.string.network_error)
                 }
             }
         }
@@ -46,11 +57,18 @@ class MainFragmentViewModel @Inject  constructor(
             viewModelScope.launch {
                 isLoading = true
                 try {
-                    val newUsers = getContactsUseCase.getContacts(false).map { it.toContactView() }
-                    contacts = newUsers
-                    _uiState.value = UiState.Success(contacts)
+                    getContactsUseCase.getContacts(false)
+                        .ifLeft { error ->
+                            when (error){
+                                is CustomError.NetworkError -> { _uiState.value = UiState.Error(R.string.network_error) }
+                                else -> {}
+                            }
+                        }.ifRight { contactList ->
+                            contacts = contactList.map { it.toContactView() }
+                            _uiState.value = UiState.Success(contacts)
+                        }
                 } catch (e: Exception) {
-                    _uiState.value = UiState.Error(e.message)
+                    _uiState.value = UiState.Error(R.string.network_error)
                 } finally {
                     isLoading = false
                 }
@@ -71,8 +89,16 @@ class MainFragmentViewModel @Inject  constructor(
 
     fun refreshContacts(){
         viewModelScope.launch {
-            val newUsers = getContactsUseCase.getContacts(true).map { it.toContactView() }
-            _uiState.value = UiState.Success(newUsers)
+            getContactsUseCase.getContacts(true)
+                .ifLeft { error ->
+                    when (error){
+                        is CustomError.NetworkError -> { _uiState.value = UiState.Error(R.string.network_error) }
+                        else -> {}
+                    }
+                }.ifRight { contactList ->
+                    contacts = contactList.map { it.toContactView() }
+                    _uiState.value = UiState.Success(contacts)
+                }
         }
     }
 }
@@ -81,5 +107,5 @@ sealed class UiState {
     data object Loading : UiState()
     data class Success(val contacts: List<ContactView>?) : UiState()
     data class FilteredList(val filteredContacts: List<ContactView>?) : UiState()
-    data class Error(val message: String?) : UiState()
+    data class Error(val message: Int) : UiState()
 }

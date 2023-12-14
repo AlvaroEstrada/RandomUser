@@ -1,5 +1,7 @@
 package com.alvaroestrada.data.network.usecases
 
+import com.alvaroestrada.data.errors.CustomError
+import com.alvaroestrada.data.errors.Either
 import com.alvaroestrada.data.repositories.ContactRepository
 import com.alvaroestrada.domain.interfaces.view.IContactView
 import io.mockk.MockKAnnotations
@@ -27,59 +29,64 @@ class GetContactsUseCaseTest {
     }
 
     @Test
-    fun `getContacts should return list from repository when resetPage is false`() = runBlocking {
+    fun `getContacts should return Right with list from repository when resetPage is false`() = runBlocking {
         // Given
         val mockContactsList = listOf<IContactView>()
-        coEvery { repository.getNextPageOfUsers(false) } returns mockContactsList
+        coEvery { repository.getNextPageOfUsers(false) } returns Either.Right(mockContactsList)
 
         // When
         val result = getContactsUseCase.getContacts(false)
 
         // Then
-        assertEquals(mockContactsList, result)
+        assert(result is Either.Right)
+        assertEquals(mockContactsList, (result as Either.Right).value)
         coVerify { runBlocking { repository.getNextPageOfUsers(false) } }
     }
 
     @Test
-    fun `getContacts should return a list of 20 contacts when resetPage is true`() = runBlocking {
+    fun `getContacts should return Right with a list of 20 contacts when resetPage is true`() = runBlocking {
         // Given
         val dummyContactsList = generateDummyContactsList(20)
-        coEvery { repository.getNextPageOfUsers(true) } returns dummyContactsList
+        coEvery { repository.getNextPageOfUsers(true) } returns Either.Right(dummyContactsList)
 
         // When
         val result = getContactsUseCase.getContacts(true)
 
         // Then
-        assertEquals(20, result.size)
+        assert(result is Either.Right)
+        assertEquals(20, (result as Either.Right).value.size)
     }
 
-    private fun generateDummyContactsList(size: Int): List<IContactView> {
-        return List(size) { mockk<IContactView>(relaxed = true) }
-    }
-
-
-    @Test(expected = Exception::class)
-    fun `getContacts should throw an exception when repository throws an exception`() = runBlocking {
+    @Test
+    fun `getContacts should return Left with CustomError when repository fails`() = runBlocking {
         // Given
-        coEvery { repository.getNextPageOfUsers(any()) } throws Exception("Test exception")
+        val mockError = CustomError.NetworkError
+        coEvery { repository.getNextPageOfUsers(any()) } returns Either.Left(mockError)
 
         // When
-        getContactsUseCase.getContacts(true)
+        val result = getContactsUseCase.getContacts(true)
 
         // Then
+        assert(result is Either.Left)
+        assertEquals(mockError, (result as Either.Left).value)
         coVerify { runBlocking { repository.getNextPageOfUsers(true) } }
     }
 
     @Test
-    fun `getContacts should return an empty list when repository returns an empty list`() = runBlocking {
+    fun `getContacts should return Right with an empty list when repository returns an empty list`() = runBlocking {
         // Given
-        coEvery { repository.getNextPageOfUsers(any()) } returns emptyList()
+        coEvery { repository.getNextPageOfUsers(any()) } returns Either.Right(emptyList())
 
         // When
         val result = getContactsUseCase.getContacts(true)
 
         // Then
-        assertTrue(result.isEmpty())
+        assert(result is Either.Right)
+        assertTrue((result as Either.Right).value.isEmpty())
         coVerify { runBlocking { repository.getNextPageOfUsers(true) } }
+    }
+
+    private fun generateDummyContactsList(size: Int): List<IContactView> {
+        return List(size) { mockk<IContactView>(relaxed = true) }
     }
 }

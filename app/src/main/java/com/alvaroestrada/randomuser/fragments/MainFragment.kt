@@ -21,6 +21,7 @@ import com.alvaroestrada.randomuser.adapters.ContactsAdapter
 import com.alvaroestrada.randomuser.databinding.FilterBottomSheetBinding
 import com.alvaroestrada.randomuser.databinding.FragmentMainBinding
 import com.alvaroestrada.randomuser.extensions.hideKeyboard
+import com.alvaroestrada.randomuser.extensions.toast
 import com.alvaroestrada.randomuser.models.ContactView
 import com.alvaroestrada.randomuser.viewmodels.MainFragmentViewModel
 import com.alvaroestrada.randomuser.viewmodels.UiState
@@ -179,7 +180,9 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun showError(message: String?) {}
+    private fun showError(message: Int) {
+        requireActivity().toast(getString(message))
+    }
 
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
