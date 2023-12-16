@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.alvaroestrada.randomuser.BuildConfig
 import com.alvaroestrada.randomuser.R
 import com.alvaroestrada.randomuser.databinding.FragmentContactDetailBinding
 import com.alvaroestrada.randomuser.extensions.loadBorderCircularImage
@@ -89,13 +90,13 @@ class ContactDetailFragment : Fragment(R.layout.fragment_contact_detail) {
                 isRotateGesturesEnabled = false
             }
             val customMarkerIcon = BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)
-            val location = LatLng(args.contact.latitude.toDouble(), args.contact.latitude.toDouble())
+            val location = LatLng(args.contact.latitude.toDouble(), args.contact.longitude.toDouble())
             val markerOptions = MarkerOptions()
                 .position(location)
                 .title(args.contact.fullName)
                 .icon(customMarkerIcon)
             googleMap.addMarker(markerOptions)
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 10f))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 14f))
         }
     }
 
