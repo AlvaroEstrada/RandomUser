@@ -26,13 +26,15 @@ class MainFragmentViewModel @Inject  constructor(
     private var contacts = emptyList<ContactView>()
 
     var isLoading = false
+    private var isDataLoaded = false
 
     init {
         loadContacts()
     }
 
     private fun loadContacts(){
-        if (contacts.isEmpty()){
+        _uiState.value = UiState.Loading
+        if (isDataLoaded.not() && contacts.isEmpty()){
             viewModelScope.launch {
                 try {
                     getContactsUseCase.getContacts(true)
@@ -43,6 +45,7 @@ class MainFragmentViewModel @Inject  constructor(
                             }
                         }.ifRight { contactList ->
                             contacts = contactList.map { it.toContactView() }
+                            isDataLoaded = true
                             _uiState.value = UiState.Success(contacts)
                         }
                 } catch (e: Exception) {
@@ -88,6 +91,7 @@ class MainFragmentViewModel @Inject  constructor(
     }
 
     fun refreshContacts(){
+        isDataLoaded = false
         viewModelScope.launch {
             getContactsUseCase.getContacts(true)
                 .ifLeft { error ->
@@ -97,7 +101,7 @@ class MainFragmentViewModel @Inject  constructor(
                     }
                 }.ifRight { contactList ->
                     contacts = contactList.map { it.toContactView() }
-                    _uiState.value = UiState.Success(contacts)
+                    _uiState.value = UiState.RefreshSucces(contacts)
                 }
         }
     }
@@ -106,6 +110,7 @@ class MainFragmentViewModel @Inject  constructor(
 sealed class UiState {
     data object Loading : UiState()
     data class Success(val contacts: List<ContactView>?) : UiState()
+    data class RefreshSucces(val contacts: List<ContactView>?) : UiState()
     data class FilteredList(val filteredContacts: List<ContactView>?) : UiState()
     data class Error(val message: Int) : UiState()
 }

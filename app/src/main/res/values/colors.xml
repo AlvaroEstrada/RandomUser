@@ -5,4 +5,5 @@
     <color name="grey">#FF707070</color>
     <color name="lightGrey">#FFE7E7E7</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="loadingGrey">#FFC8C8C9</color>
 </resources>
