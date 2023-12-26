@@ -14,8 +14,9 @@ Este proyecto emplea un enfoque de arquitectura limpia, separando preocupaciones
 
 ## Composición
 - **Arquitectura:** Arquitectura limpia modular.
-- **Patrones:** MVVM y MVI.
+- **Patrones:** Singleton, MVVM y MVI.
 - **Componentes:**
+  - DiffUtil para la gestión de cambios en el RecyclerView.
   - Inyección de dependencias con HILT
   - Control de paginación con DataStore
   - Control de vistas con Navigation
@@ -23,6 +24,19 @@ Este proyecto emplea un enfoque de arquitectura limpia, separando preocupaciones
   - Diseño con Material
   - Carga de imágenes con Glide
   - Test Unitarios con JUnit4 y MockK
+  - Shimmer para la carga de datos
+
+- **Librerías**
+  - Dagger HILT
+  - Retrofit
+  - OkHttp
+  - Moshi
+  - JetPack DataStore
+  - Timber
+  - Facebook Shimmer
+  - Glide
+  - JUnit4
+  - MockK
 
 ## Comenzando
 1. Descargue el proyecto

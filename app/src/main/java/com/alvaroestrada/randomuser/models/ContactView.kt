@@ -2,7 +2,7 @@ package com.alvaroestrada.randomuser.models
 
 import android.os.Parcelable
 import com.alvaroestrada.domain.interfaces.view.IContactView
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ContactView(

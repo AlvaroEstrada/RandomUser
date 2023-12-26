@@ -34,7 +34,8 @@ class ContactRepository @Inject constructor(
             if (response.isSuccessful) {
                 val newContacts = response.body()?.contacts?.map { mapper.fromRemoteToView(it) }.orEmpty()
                 allContacts.addAll(newContacts)
-                setCurrentPage(currentPage + 1)
+                upPage()
+                setCurrentPage(getCurrentPage())
                 Either.Right(allContacts.toList())
             } else {
                 Either.Left(CustomError.NetworkError)

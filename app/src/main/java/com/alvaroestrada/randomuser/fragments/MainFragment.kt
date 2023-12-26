@@ -1,5 +1,6 @@
 package com.alvaroestrada.randomuser.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,6 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@SuppressLint("NotifyDataSetChanged")
 @AndroidEntryPoint
 class MainFragment : Fragment() {
 
@@ -48,6 +50,7 @@ class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
     }
 
     override fun onCreateView(
@@ -64,6 +67,15 @@ class MainFragment : Fragment() {
         bindingBottomSheet = FilterBottomSheetBinding.bind(binding.root)
         setToolbar()
         initView()
+
+        savedInstanceState?.let {
+            val showShimmer = it.getBoolean("SHIMMER_STATE", true)
+            contactsAdapter.showShimmer = showShimmer
+            if (!showShimmer) {
+                contactsAdapter.notifyDataSetChanged()
+            }
+        }
+
         observe()
     }
 
@@ -84,9 +96,8 @@ class MainFragment : Fragment() {
             viewModel.uiState.collect { uiState ->
                 when (uiState) {
                     is UiState.Loading -> showLoading()
-                    is UiState.Success -> {
-                        showData(uiState.contacts)
-                    }
+                    is UiState.Success -> showData(uiState.contacts)
+                    is UiState.RefreshSucces -> refreshData(uiState.contacts)
                     is UiState.Error -> showError(uiState.message)
                     is UiState.FilteredList -> showData(uiState.filteredContacts)
                 }
@@ -170,18 +181,37 @@ class MainFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun showLoading() {}
+    private fun showLoading() {
+        contactsAdapter.showShimmer = true
+        contactsAdapter.notifyDataSetChanged()
+    }
 
     private fun showData(contacts: List<ContactView>?) {
-        contactsAdapter.submitList(contacts) {
-            if (lastVisibleItemPosition != RecyclerView.NO_POSITION && lastVisibleItemPosition != 0 && isSearching.not()) {
-                binding.contactRv.layoutManager?.scrollToPosition(lastVisibleItemPosition)
+        lifecycleScope.launch {
+            contactsAdapter.submitList(contacts) {
+                if (lastVisibleItemPosition != RecyclerView.NO_POSITION && lastVisibleItemPosition != 0 && isSearching.not()) {
+                    binding.contactRv.layoutManager?.scrollToPosition(lastVisibleItemPosition)
+                }
             }
+            contactsAdapter.notifyDataSetChanged()
+            contactsAdapter.showShimmer = false
+        }
+    }
+
+    private fun refreshData(contacts: List<ContactView>?) {
+        contactsAdapter.showShimmer = true
+        contactsAdapter.submitList(emptyList())
+
+        lifecycleScope.launch {
+            contactsAdapter.submitList(contacts)
+            contactsAdapter.notifyDataSetChanged()
+            contactsAdapter.showShimmer = false
         }
     }
 
     private fun showError(message: Int) {
         requireActivity().toast(getString(message))
+        contactsAdapter.showShimmer = false
     }
 
     @Deprecated("Deprecated in Java")
@@ -231,6 +261,11 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("SHIMMER_STATE", contactsAdapter.showShimmer)
     }
 
 }
